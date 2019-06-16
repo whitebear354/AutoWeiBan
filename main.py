@@ -1,19 +1,30 @@
 import WeiBanAPI
+import time
 
-getCookiesURL = 'https://weiban.mycourse.cn/#/login'  # 获取CookiesURL
-
-loginURL = 'https://weiban.mycourse.cn/pharos/login/login.do'  # 登录请求URL
-
-studentNum = '04181030'
-
-tenantCode = '51900002X'
+tenantCode = '51900002X'  # 吉珠
+sleeptime = 0
 
 
-def crawlerName():
+def crawlerStuInfo(studentNum):
     cookie = WeiBanAPI.getCookie()
     # print('Get Cookie: ' + cookie)
     userId = WeiBanAPI.login(studentNum, studentNum, tenantCode, cookie)
-    name = WeiBanAPI.getName(userId, tenantCode, cookie)
-    return name
+    stuInfo = WeiBanAPI.getStuInfo(userId, tenantCode, cookie)
+    return stuInfo
 
-crawlerName()
+
+# print(crawlerStuInfo(studentNum))
+
+# file = open('C:\\Users\\Adam\\Desktop\\student', 'a')
+
+for studentNum in range(00000000, 0000000): # 这里填写学号信息
+    file = open('C:\\Users\\Adam\\Desktop\\student16', 'a')
+    studentNumStr = '0' + str(studentNum)
+    print('正在获取学生' + studentNumStr)
+    try:
+        studentInfo = crawlerStuInfo(studentNumStr)
+        file.write(studentNumStr + '  ' + studentInfo + '\n')
+    except BaseException:
+        print(BaseException)
+    file.close()
+    time.sleep(1)
