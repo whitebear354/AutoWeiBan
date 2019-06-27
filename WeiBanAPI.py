@@ -28,7 +28,8 @@ def login(keyNumber, password, tenantCode, cookie):
     responseStream = request.urlopen(req)
     responseText = responseStream.read().decode('utf-8')
     responseJSON = json.loads(responseText)
-    return responseJSON['data']['userId']
+    return responseJSON
+    # return responseJSON['data']['userId']
 
 
 def getStuInfo(userId, tenantCode, cookie):
@@ -41,4 +42,16 @@ def getStuInfo(userId, tenantCode, cookie):
     responseStream = request.urlopen(req)
     responseText = responseStream.read().decode('utf-8')
     responseJSON = json.loads(responseText)
-    return responseJSON['data']['realName'] + ' ' + responseJSON['data']['gender']
+    return responseJSON
+
+def getProgress(userProjectId, tenantCode, cookie):
+    param = {
+        'userProjectId': userProjectId,
+        'tenantCode': tenantCode
+    }
+    data = bytes(parse.urlencode(param), encoding='utf-8')
+    req = request.Request(url=getNameURL, data=data, method='POST')
+    responseStream = request.urlopen(req)
+    responseText = responseStream.read().decode('utf-8')
+    responseJSON = json.loads(responseText)
+    return responseJSON
