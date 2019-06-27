@@ -8,6 +8,9 @@ loginURL = 'https://weiban.mycourse.cn/pharos/login/login.do'  # 登录请求 UR
 
 getNameURL = 'https://weiban.mycourse.cn/pharos/my/getInfo.do'  # 获取姓名 URL
 
+getProgressURL = 'https://weiban.mycourse.cn/pharos/project/showProgress.do' #获取进度 URL
+
+getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do'
 
 # 获取一个新Cookie
 def getCookie():
@@ -16,7 +19,7 @@ def getCookie():
     opener = request.build_opener(handler)
     return cookie
 
-
+# 登录请求
 def login(keyNumber, password, tenantCode, cookie):
     param = {
         'keyNumber': keyNumber,
@@ -31,7 +34,7 @@ def login(keyNumber, password, tenantCode, cookie):
     return responseJSON
     # return responseJSON['data']['userId']
 
-
+# 获取学生信息
 def getStuInfo(userId, tenantCode, cookie):
     param = {
         'userId': userId,
@@ -44,13 +47,29 @@ def getStuInfo(userId, tenantCode, cookie):
     responseJSON = json.loads(responseText)
     return responseJSON
 
+# 获取课程进度
 def getProgress(userProjectId, tenantCode, cookie):
     param = {
         'userProjectId': userProjectId,
         'tenantCode': tenantCode
     }
     data = bytes(parse.urlencode(param), encoding='utf-8')
-    req = request.Request(url=getNameURL, data=data, method='POST')
+    req = request.Request(url=getProgressURL, data=data, method='POST')
+    responseStream = request.urlopen(req)
+    responseText = responseStream.read().decode('utf-8')
+    responseJSON = json.loads(responseText)
+    return responseJSON
+
+# 获取课程列表
+def getListCourse(userProjectId, chooseType, tenantCode, name, cookie):
+    param = {
+        'userProjectId': userProjectId,
+        'chooseType': chooseType,
+        'tenantCode': tenantCode,
+        'name': name
+    }
+    data = bytes(parse.urlencode(param), encoding='utf-8')
+    req = request.Request(url=getListCourseURL, data=data, method='POST')
     responseStream = request.urlopen(req)
     responseText = responseStream.read().decode('utf-8')
     responseJSON = json.loads(responseText)
