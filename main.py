@@ -1,10 +1,12 @@
 import WeiBanAPI
-import time #time.sleep延时
+import json
+import time  # time.sleep延时
+
 
 tenantCode = '51900002' # 吉珠学院码
 
 
-# 程序信息打印
+# 程序版本信息打印，脚本写的咋样不说，先把B装了
 figletFile = open('.\\figlet', 'r')
 print(figletFile.read())
 figletFile.close()
@@ -63,16 +65,30 @@ except BaseException:
 
 # 请求课程列表
 try:
-print(WeiBanAPI.getListCourse(loginResponse['data']['preUserProjectId'],
+    getListCourseResponse = WeiBanAPI.getListCourse(loginResponse['data']['preUserProjectId'],
                               '3',
                               tenantCode,
                               '',
-                              cookie))
+                              cookie)
+except BaseException:
+    print('请求课程列表失败')
 
-
-###########################################################   以上为抓到课程列表代码，全部注释对返回JSON进行研究
-
-
+##################################################################################以上为抓到课程列表代码，全部注释对返回JSON进行研究
+#
+# f = open('.\\JSON', 'r')
+# getListCourseResponse = json.loads(f.read())
+#
+##################################################################################
+print('解析课程开始')
+print(len(getListCourseResponse['data']))
+for i in getListCourseResponse['data']:
+    print('\n----章节码：' + i['categoryCode'] + '章节内容：' + i['categoryName'])
+    for j in i['courseList']:
+        print('课程内容：' + j['resourceName'] + '\nuserCourseId:' +j['userCourseId'])
+        print('发送完成请求')
+        delayInt = WeiBanAPI.getRandomTime()
+        print('随机延时' + str(delayInt))
+        time.sleep(delayInt)
 # try:
 #     print('请求课程进度')
 
@@ -99,9 +115,9 @@ print(WeiBanAPI.getListCourse(loginResponse['data']['preUserProjectId'],
 #     file.close()
 #     time.sleep(1)
 
-
-for i in range(101):
-    string = 'loading... ' + str(i) + '%'
-    print(string, end='')    # 不换行
-    print('\b' * len(string), end='', flush=True)    # 删除前面打印的字符
-    time.sleep(0.2)
+#
+# for i in range(101):
+#     string = 'loading... ' + str(i) + '%'
+#     print(string, end='')    # 不换行
+#     print('\b' * len(string), end='', flush=True)    # 删除前面打印的字符
+#     time.sleep(0.2)
