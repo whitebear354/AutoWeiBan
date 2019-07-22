@@ -8,7 +8,7 @@ tenantCode = '51900002' # 吉珠院校ID
 
 
 # License
-licenseFile = open('.' + os.sep + 'License')
+licenseFile = open('.' + os.sep + 'License', encoding='utf-8')
 print(licenseFile.read())
 licenseFile.close()
 
