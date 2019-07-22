@@ -1,8 +1,19 @@
-# AutoMyCourse 自动麦课
+<p align="center">
+    <img src="https://i.loli.net/2019/07/22/5d3559f48053594320.png">
+</p>
 
-## 开发日志
+<h1 align="center">AutoWeiBan学习助手</h1>
+<center>辅助麦课安全网课学习</center>
 
-## 抓包分析
+
+<div align="center">
+![GitHub All Releases](https://img.shields.io/github/downloads/WeiYuanStudio/AutoWeiBan/total.svg?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
+![GitHub release](https://img.shields.io/github/release/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
+</div>
+
+## 抓包
 
 ### 登录请求
 
