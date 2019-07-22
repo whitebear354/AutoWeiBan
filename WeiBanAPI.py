@@ -7,15 +7,17 @@ baseDelayTime = 10  # 基础延时秒数
 
 randomDelayDeviation = 10  # 叠加随机延时差
 
-getCookiesURL = 'https://weiban.mycourse.cn/#/login'  # 获取Cookies URL
+getCookiesURL = 'https://weiban.mycourse.cn/#/login'  # 请求Cookies URL
 
 loginURL = 'https://weiban.mycourse.cn/pharos/login/login.do'  # 登录请求 URL
 
-getNameURL = 'https://weiban.mycourse.cn/pharos/my/getInfo.do'  # 获取姓名 URL
+getNameURL = 'https://weiban.mycourse.cn/pharos/my/getInfo.do'  # 请求姓名 URL
 
-getProgressURL = 'https://weiban.mycourse.cn/pharos/project/showProgress.do'  # 获取进度 URL
+getProgressURL = 'https://weiban.mycourse.cn/pharos/project/showProgress.do'  # 请求进度 URL
 
-getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do'
+getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do' # 请求课程列表 URL
+
+finishCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/finish.do' # 请求完成课程
 
 
 # 获取一个新Cookie
@@ -85,6 +87,17 @@ def getListCourse(userProjectId, chooseType, tenantCode, name, cookie):
     responseJSON = json.loads(responseText)
     return responseJSON
 
+# 完成课程请求
+def finishCourse(userCourseId, tenantCode, cookie):
+    param = {
+        'userCourseId': userCourseId,
+        'tenantCode': tenantCode
+    }
+    url_values = parse.urlencode(param) # GET请求URL参数
+    req = request.Request(url= finishCourseURL + '?' + url_values, method='GET')
+    responseStream = request.urlopen(req)
+    responseText = responseStream.read().decode('utf-8')
+    print(responseText)
 
 def getRandomTime():
     return baseDelayTime + random.randint(0, randomDelayDeviation)
