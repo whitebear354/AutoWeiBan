@@ -3,9 +3,9 @@ import http.cookiejar
 import json
 import random
 
-baseDelayTime = 10  # 基础延时秒数
+baseDelayTime = 1  # 基础延时秒数
 
-randomDelayDeviation = 10  # 叠加随机延时差
+randomDelayDeviation = 1  # 叠加随机延时差
 
 getCookiesURL = 'https://weiban.mycourse.cn/#/login'  # 请求Cookies URL
 
@@ -15,11 +15,13 @@ getNameURL = 'https://weiban.mycourse.cn/pharos/my/getInfo.do'  # 请求姓名 U
 
 getProgressURL = 'https://weiban.mycourse.cn/pharos/project/showProgress.do'  # 请求进度 URL
 
-getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do' # 请求课程列表 URL
+getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do'  # 请求课程列表 URL
 
-finishCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/finish.do' # 请求完成课程
+finishCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/finish.do'  # 请求完成课程
 
 getRandImageURL = 'https://weiban.mycourse.cn/pharos/login/randImage.do'
+
+doStudyURL = 'https://weiban.mycourse.cn/pharos/usercourse/study.do'
 
 
 # 获取一个新Cookie
@@ -91,17 +93,33 @@ def getListCourse(userProjectId, chooseType, tenantCode, name, cookie):
     responseJSON = json.loads(responseText)
     return responseJSON
 
+
 # 完成课程请求
 def finishCourse(userCourseId, tenantCode, cookie):
     param = {
         'userCourseId': userCourseId,
-        'tenantCode': tenantCode
+        'tenantCode': tenantCode,
     }
-    url_values = parse.urlencode(param) # GET请求URL参数
-    req = request.Request(url= finishCourseURL + '?' + url_values, method='GET')
+    url_values = parse.urlencode(param)  # GET请求URL参数
+    req = request.Request(url=finishCourseURL + '?' + url_values, method='GET')
     responseStream = request.urlopen(req)
     responseText = responseStream.read().decode('utf-8')
     print(responseText)
 
+
 def getRandomTime():
     return baseDelayTime + random.randint(0, randomDelayDeviation)
+
+
+def doStudy(userProjectId, userCourseId, tenantCode):
+    param = {
+        'userProjectId': userProjectId,
+        'courseId': userCourseId,
+        'tenantCode': tenantCode
+    }
+    data = bytes(parse.urlencode(param), encoding='utf-8')
+    req = request.Request(url=doStudyURL, data=data, method='POST')
+    responseStream = request.urlopen(req)
+    responseText = responseStream.read().decode('utf-8')
+    print(responseText)
+    return

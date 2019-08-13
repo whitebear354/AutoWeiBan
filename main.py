@@ -87,8 +87,11 @@ for i in getListCourseResponse['data']:
     print('\n----章节码：' + i['categoryCode'] + '章节内容：' + i['categoryName'])
     for j in i['courseList']:
         print('课程内容：' + j['resourceName'] + '\nuserCourseId:' + j['userCourseId'])
+
         print('发送完成请求')
+        WeiBanAPI.doStudy(loginResponse['data']['preUserProjectId'] ,j['resourceId'], tenantCode)
         WeiBanAPI.finishCourse(j['userCourseId'], tenantCode, cookie)
+
         delayInt = WeiBanAPI.getRandomTime()
         print('\n随机延时' + str(delayInt))
         time.sleep(delayInt)
