@@ -19,6 +19,8 @@ getListCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/listCourse.do' 
 
 finishCourseURL = 'https://weiban.mycourse.cn/pharos/usercourse/finish.do' # 请求完成课程
 
+getRandImageURL = 'https://weiban.mycourse.cn/pharos/login/randImage.do'
+
 
 # 获取一个新Cookie
 def getCookie():
@@ -29,11 +31,13 @@ def getCookie():
 
 
 # 登录请求
-def login(keyNumber, password, tenantCode, cookie):
+def login(keyNumber, password, tenantCode, randomTimeStamp, verifyCode, cookie):
     param = {
         'keyNumber': keyNumber,
         'password': password,
-        'tenantCode': tenantCode
+        'tenantCode': tenantCode,
+        'time': randomTimeStamp,
+        'verifyCode': verifyCode
     }
     data = bytes(parse.urlencode(param), encoding='utf-8')
     req = request.Request(url=loginURL, data=data, method='POST')
