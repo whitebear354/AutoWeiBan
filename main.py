@@ -88,10 +88,13 @@ for i in getListCourseResponse['data']:
     for j in i['courseList']:
         print('课程内容：' + j['resourceName'] + '\nuserCourseId:' + j['userCourseId'])
 
-        print('发送完成请求')
-        WeiBanAPI.doStudy(loginResponse['data']['preUserProjectId'] ,j['resourceId'], tenantCode)
-        WeiBanAPI.finishCourse(j['userCourseId'], tenantCode, cookie)
+        if(j['finished'] != 1):
+            print('发送完成请求')
+            WeiBanAPI.doStudy(loginResponse['data']['preUserProjectId'] ,j['resourceId'], tenantCode)
+            WeiBanAPI.finishCourse(j['userCourseId'], tenantCode, cookie)
 
-        delayInt = WeiBanAPI.getRandomTime()
-        print('\n随机延时' + str(delayInt))
-        time.sleep(delayInt)
+            delayInt = WeiBanAPI.getRandomTime()
+            print('\n随机延时' + str(delayInt))
+            time.sleep(delayInt)
+        else:
+            print('已完成')
