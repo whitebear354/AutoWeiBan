@@ -7,7 +7,7 @@ import random
 tenantCode = '51900002'  # 吉珠院校ID
 
 # License
-licenseFile = open('.' + os.sep + 'License', encoding='utf-8')
+licenseFile = open('.' + os.sep + 'LICENSE', encoding='utf-8')
 print(licenseFile.read())
 licenseFile.close()
 
