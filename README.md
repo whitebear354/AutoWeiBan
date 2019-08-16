@@ -3,14 +3,16 @@
 </p>
 
 <h1 align="center">AutoWeiBan学习助手</h1>
-<center>辅助麦课安全网课学习</center>
-
 
 <div align="center">
-![GitHub All Releases](https://img.shields.io/github/downloads/WeiYuanStudio/AutoWeiBan/total.svg?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
-![GitHub release](https://img.shields.io/github/release/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/WeiYuanStudio/AutoWeiBan.svg?style=for-the-badge)
+
+辅助麦课安全网课学习
+
+![GitHub All Releases](https://img.shields.io/github/downloads/WeiYuanStudio/AutoWeiBan/total.svg?style=flat-square)
+![GitHub](https://img.shields.io/github/license/WeiYuanStudio/AutoWeiBan.svg?style=flat-square)
+![GitHub release](https://img.shields.io/github/release/WeiYuanStudio/AutoWeiBan.svg?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/WeiYuanStudio/AutoWeiBan.svg?style=flat-square)
+
 </div>
 
 ## 抓包
@@ -37,10 +39,10 @@ Referer: https://weiban.mycourse.cn/
 Cookie: ****
 ```
 
-Parameter: 
-|                |                |
-|----------------|----------------|
+Parameter:
+
 |keyNumber       |学号            |
+|----------------|----------------|
 |password	     |密码            |
 |tenantCode	     |学院编码         |
 
@@ -97,10 +99,10 @@ Referer: https://weiban.mycourse.cn/
 Cookie: ****
 ```
 
-Parameter: 
-|                |                |
-|----------------|----------------|
+Parameter:
+
 |userProjectId   |4ca8****c6a6任务ID|
+|----------------|----------------|
 |chooseType      |3 (未知值)      |
 |tenantCode      |学院编号        |
 |name            |空 (未知值)     |
@@ -158,9 +160,9 @@ Cookie: ****
 ```
 
 Parameter:
-|                |                |
+
+|userProjectId	 |4ca8****c6a6任务ID|
 |----------------|----------------|
-|userProjectId	 |4ca8****c6a6任务ID
 |tenantCode	     |51900002        |
 
 
@@ -212,9 +214,9 @@ Cache-Control: max-age=0
 ```
 
 Parameter:
-|                |                |
-|----------------|----------------|
+
 |userId	         |fdc2****0043个人ID|
+|----------------|----------------|
 |tenantCode	     |学院码          |
 
 
